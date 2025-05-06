@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jyothi Enterprises - Wholesale Dealers in Housekeeping Materials</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="images/JE_logo.jpeg" alt="Jyothi Enterprises Logo" class="logo-image">
+                    <div class="logo-text">
+                        <h1>JYOTHI <span>ENTERPRISES</span></h1>
+                        <p>WHOLESALE DEALERS IN HOUSEKEEPING MATERIALS</p>
+                    </div>
+                </div>
+                <div class="contact-info">
+                    <p><i class="fas fa-phone"></i>  +91 8970128495 / +91 7022096642</p>
+                    <p><i class="fas fa-envelope"></i> Krishan16feb.gowda@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#customers">Our Customers</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="admin-link">
+                <a href="admin.html"><i class="fas fa-user-shield"></i> Admin Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h2>Quality Housekeeping Products at Wholesale Prices</h2>
+            <p>Dealing in all kinds of House Keeping Materials since 2005</p>
+            <a href="#products" class="btn">View Products</a>
+        </div>
+    </section>
+
+    <section id="products" class="products">
+        <div class="container">
+            <h2>Our Products</h2>
+            <div class="product-categories">
+                <button class="active" data-category="all">All Products</button>
+                <button data-category="chemical">Chemical Items</button>
+                <button data-category="hygienic">Hygienic Materials</button>
+                <button data-category="branded">Branded Products</button>
+            </div>
+            <div class="product-grid" id="productGrid">
+                <!-- Products will be loaded here via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Jyothi Enterprises</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Jyothi Enterprises has been a trusted wholesale dealer in housekeeping materials since 2005. We provide high-quality products to hospitals, schools, hostels, and various institutions across Bangalore and Mandya.</p>
+                    <p>Our mission is to provide reliable, affordable housekeeping solutions with prompt delivery and excellent customer service.</p>
+                    <h3>Our Address</h3>
+                    <p>#27, 6th Cross, Vidyaman Nagar,<br>
+                    Andhraili Main Road, Opp Pooja Jewellers,<br>
+                    Bangalore - 560091</p>
+                </div>
+                <div class="about-image">
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d4181.091791356441!2d77.48536767507704!3d13.003529987314785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTPCsDAwJzEyLjciTiA3N8KwMjknMTYuNiJF!5e1!3m2!1sen!2sin!4v1746525750176!5m2!1sen!2sin" width="100%" height="300" style="border:0; margin-top: 20px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="customers" class="customers">
+        <div class="container">
+            <h2>Our Esteemed Customers</h2>
+            <div class="customer-tabs">
+                <button class="tab-button active" data-tab="bangalore">Bangalore Customers</button>
+                <button class="tab-button" data-tab="mandya">Mandya Customers</button>
+            </div>
+            
+            <div id="bangalore" class="tab-content active">
+                <div class="customer-columns">
+                    <div class="customer-column">
+                        <h3>Hospitals & Clinics</h3>
+                        <ul>
+                            <li>Narayana Super Specialty Hospital</li>
+                            <li>Sri Lakshmi Super Specialty Hospital</li>
+                            <li>Unity Life Line Hospital</li>
+                            <li>Citi Hospital</li>
+                            <li>Kade Hospital</li>
+                            <li>Hamilton Bailley Hospital</li>
+                            <li>Vijay Nethralaya</li>
+                            <li>Prasad Global Hospital</li>
+                            <li>Sharavathi Hospital</li>
+                            <li>Kusuma Hospital</li>
+                        </ul>
+                    </div>
+                    <div class="customer-column">
+                        <h3>Diagnostic Centers</h3>
+                        <ul>
+                            <li>Carry Test Tube Baby Center</li>
+                            <li>Pathacon Diagnostics</li>
+                            <li>YS Diagnostic Centre</li>
+                            <li>Sakshi Diagnostics</li>
+                            <li>Cosmo Diagnostic</li>
+                            <li>Focus Diagnostics</li>
+                            <li>4d Diagnostic</li>
+                            <li>Cauvery Diagnostic</li>
+                        </ul>
+                    </div>
+                    <div class="customer-column">
+                        <h3>Schools & Others</h3>
+                        <ul>
+                            <li>Vri Media Pvt Ltd</li>
+                            <li>Republic Kamada News Channel</li>
+                            <li>Bgs Bloom Field School</li>
+                            <li>Anupama School</li>
+                            <li>Brundavan Appartments</li>
+                            <li>Om Creation</li>
+                            <li>Gauruda Fasion</li>
+                            <li>Maruthi Power Service</li>
+                            <li>Asaktha Poshaka Sabha</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="mandya" class="tab-content">
+                <div class="customer-columns">
+                    <ul>
+                        <li>Adichunchanagiri Institute of Medical Sciences</li>
+                        <li>Adichunchanagiri Medical College Boys Hostel</li>
+                        <li>Adichunchanagiri Medical College Ladies Hostel</li>
+                        <li>BGS Institute of Technology</li>
+                        <li>BGSIT Boys Hostel</li>
+                        <li>BGSIT Ladies Hostel</li>
+                        <li>Adichunchanagiri Nursing and Pharmacy College</li>
+                        <li>Adichunchanagiri First grade College</li>
+                        <li>BGS Model Public School and PU College, Hostel</li>
+                        <li>SBNSHS School, College and Hostel</li>
+                        <li>Adichunchanagiri University</li>
+                        <li>Adichunchanagiri Mutt and Guest House</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-container">
+                <div class="contactus-info">
+                    <h3>Get in Touch</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> #27, 6th Cross, Vidyaman Nagar,<br>Andhraili Main Road, Opp Pooja Jewellers,<br>Bangalore - 560091</p>
+                    <p><i class="fas fa-phone"></i> +91 8970128495 (Mr. Lokesh Jyothi)</p>
+                    <p><i class="fas fa-phone"></i> +91 7022096642 (Mr. Lokesh)</p>
+                    <p><i class="fas fa-envelope"></i> Krishan16feb.gowda@gmail.com</p>
+                    
+                    <h3>Business Hours</h3>
+                    <p>Monday - Saturday: 9:00 AM - 8:00 PM</p>
+                    <p>Sunday: Closed</p>
+                </div>
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form id="messageForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="phone" placeholder="Your Phone Number">
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Jyothi Enterprises</h3>
+                    <p>Wholesale Dealers in all kinds of House Keeping Materials since 2005.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#customers">Our Customers</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Bangalore - 560091</p>
+                    <p><i class="fas fa-phone"></i>  +91 8970128495</p>
+                    <p><i class="fas fa-envelope"></i> Krishan16feb.gowda@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Jyothi Enterprises. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

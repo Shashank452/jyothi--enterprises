@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jyothi Enterprises - Admin Panel</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1>Jyothi Enterprises <span>Admin Panel</span></h1>
+            <button id="logoutBtn">Logout</button>
+        </header>
+
+        <div class="admin-main">
+            <aside class="admin-sidebar">
+                <nav>
+                    <ul>
+                        <li class="active"><a href="#" data-section="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        <li><a href="#" data-section="products"><i class="fas fa-box-open"></i> Products</a></li>
+                        <li><a href="#" data-section="orders"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+                        <li><a href="#" data-section="customers"><i class="fas fa-users"></i> Customers</a></li>
+                        <li><a href="#" data-section="settings"><i class="fas fa-cog"></i> Settings</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <main class="admin-content">
+                <!-- Dashboard Section -->
+                <section id="dashboard" class="admin-section active">
+                    <h2>Dashboard Overview</h2>
+                    <div class="stats-container">
+                        <div class="stat-card">
+                            <h3>Total Products</h3>
+                            <p id="totalProducts">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Active Products</h3>
+                            <p id="activeProducts">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Pending Orders</h3>
+                            <p id="pendingOrders">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Total Customers</h3>
+                            <p id="totalCustomers">0</p>
+                        </div>
+                    </div>
+                    <div class="recent-activity">
+                        <h3>Recent Activity</h3>
+                        <ul id="activityList">
+                            <!-- Activity items will be added here -->
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Products Section -->
+                <section id="products" class="admin-section">
+                    <div class="section-header">
+                        <h2>Product Management</h2>
+                        <button id="addProductBtn" class="btn-primary">Add New Product</button>
+                    </div>
+                    
+                    <div class="product-filters">
+                        <select id="productCategoryFilter">
+                            <option value="all">All Categories</option>
+                            <option value="chemical">Chemical Items</option>
+                            <option value="hygienic">Hygienic Materials</option>
+                            <option value="branded">Branded Products</option>
+                        </select>
+                        <select id="productStatusFilter">
+                            <option value="all">All Statuses</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                        <input type="text" id="productSearch" placeholder="Search products...">
+                    </div>
+                    
+                    <div class="table-container">
+                        <table id="productsTable">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Price (₹)</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Product rows will be added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="pagination">
+                        <button id="prevPage" disabled>Previous</button>
+                        <span id="pageInfo">Page 1 of 1</span>
+                        <button id="nextPage" disabled>Next</button>
+                    </div>
+                </section>
+
+                <!-- Orders Section -->
+                <section id="orders" class="admin-section">
+                    <h2>Order Management</h2>
+                    <p>Order management functionality will be implemented in future updates.</p>
+                </section>
+
+                <!-- Customers Section -->
+                <section id="customers" class="admin-section">
+                    <h2>Customer Management</h2>
+                    <p>Customer management functionality will be implemented in future updates.</p>
+                </section>
+
+                <!-- Settings Section -->
+                <section id="settings" class="admin-section">
+                    <h2>Settings</h2>
+                    <form id="adminSettingsForm">
+                        <div class="form-group">
+                            <label for="companyName">Company Name</label>
+                            <input type="text" id="companyName" name="companyName" value="Jyothi Enterprises">
+                        </div>
+                        <div class="form-group">
+                            <label for="companyAddress">Company Address</label>
+                            <textarea id="companyAddress" name="companyAddress">#27, 6th Cross, Vidyaman Nagar, Andhraili Main Road, Opp Pooja Jewellers, Bangalore - 560091</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="primaryPhone">Primary Phone</label>
+                            <input type="text" id="primaryPhone" name="primaryPhone" value="+91 9740938007">
+                        </div>
+                        <div class="form-group">
+                            <label for="secondaryPhone">Secondary Phone</label>
+                            <input type="text" id="secondaryPhone" name="secondaryPhone" value="+91 7022096642">
+                        </div>
+                        <div class="form-group">
+                            <label for="companyEmail">Company Email</label>
+                            <input type="email" id="companyEmail" name="companyEmail" value="Krishan16feb.gowda@gmail.com">
+                        </div>
+                        <button type="submit" class="btn-primary">Save Settings</button>
+                    </form>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Add/Edit Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modalTitle">Add New Product</h2>
+            <form id="productForm">
+                <input type="hidden" id="productId">
+                <div class="form-group">
+                    <label for="productName">Product Name</label>
+                    <input type="text" id="productName" name="productName" required>
+                </div>
+                <div class="form-group">
+                    <label for="productCategory">Category</label>
+                    <select id="productCategory" name="productCategory" required>
+                        <option value="chemical">Chemical Items</option>
+                        <option value="hygienic">Hygienic Materials</option>
+                        <option value="branded">Branded Products</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="productPrice">Price (₹)</label>
+                    <input type="number" id="productPrice" name="productPrice" min="0" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="productQuantity">Quantity/Unit</label>
+                    <input type="text" id="productQuantity" name="productQuantity" placeholder="e.g., 1L, 1Pc, 5L Can">
+                </div>
+                <div class="form-group">
+                    <label for="productImage">Product Image</label>
+                    <input type="file" id="productImage" name="productImage" accept="image/*">
+                    <div id="imagePreviewContainer" style="display: none;">
+                        <img id="imagePreview" src="#" alt="Preview" style="max-width: 200px; max-height: 200px;">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="productStatus">Status</label>
+                    <select id="productStatus" name="productStatus">
+                        <option value="active">Active (Visible to customers)</option>
+                        <option value="inactive">Inactive (Hidden from customers)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="productDescription">Description (Optional)</label>
+                    <textarea id="productDescription" name="productDescription"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Save Product</button>
+                    <button type="button" class="btn-secondary close-modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

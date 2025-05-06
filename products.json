@@ -1,0 +1,82 @@
+[
+    {
+        "id": "1",
+        "name": "Floor Cleaner",
+        "category": "chemical",
+        "price": 120.50,
+        "quantity": "5L Can",
+        "description": "Concentrated floor cleaner for all types of flooring",
+        "image": "images/items/floor-cleaner.jpg",
+        "status": "active"
+    },
+    {
+        "id": "2",
+        "name": "Hand Sanitizer",
+        "category": "hygienic",
+        "price": 85.00,
+        "quantity": "500ml Bottle",
+        "description": "Alcohol-based hand sanitizer with moisturizers",
+        "image": "images/items/hand-sanitizer.jpg",
+        "status": "active"
+    },
+    {
+        "id": "3",
+        "name": "Toilet Cleaner",
+        "category": "chemical",
+        "price": 65.75,
+        "quantity": "1L Bottle",
+        "description": "Powerful toilet cleaner removes stains and disinfects",
+        "image": "images/items/harpic.jpg",
+        "status": "active"
+    },
+    {
+        "id": "4",
+        "name": "Disposable Gloves",
+        "category": "hygienic",
+        "price": 150.00,
+        "quantity": "Box of 100",
+        "description": "Latex-free disposable gloves for cleaning and hygiene",
+        "image": "images/items/placeholder.png",
+        "status": "active"
+    },
+    {
+        "id": "5",
+        "name": "Glass Cleaner",
+        "category": "chemical",
+        "price": 90.25,
+        "quantity": "750ml Spray",
+        "description": "Streak-free glass cleaner for windows and mirrors",
+        "image": "images/items/glass-cleaner.jpg",
+        "status": "active"
+    },
+    {
+        "id": "6",
+        "name": "Microfiber Cloth",
+        "category": "hygienic",
+        "price": 45.00,
+        "quantity": "1 Piece",
+        "description": "High-quality microfiber cleaning cloth",
+        "image": "images/items/microfiber-cloth.jpg",
+        "status": "active"
+    },
+    {
+        "id": "7",
+        "name": "Dettol Antiseptic Liquid",
+        "category": "branded",
+        "price": 180.00,
+        "quantity": "500ml Bottle",
+        "description": "Original Dettol antiseptic liquid for disinfection",
+        "image": "images/items/dettol.jpg",
+        "status": "active"
+    },
+    {
+        "id": "8",
+        "name": "Harpic Toilet Cleaner",
+        "category": "branded",
+        "price": 95.50,
+        "quantity": "750ml Bottle",
+        "description": "Original Harpic toilet cleaner",
+        "image": "images/items/placeholder.png",
+        "status": "inactive"
+    }
+]
