@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="css/admin.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 </head>
+
 <body>
     <!-- Login Form -->
     <div class="login-form" style="display: none;">
@@ -155,7 +157,7 @@
                                     <label for="productName">Product Name <span class="required">*</span></label>
                                     <input type="text" id="productName" name="name" required>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="productCategory">Category <span class="required">*</span></label>
                                     <select id="productCategory" name="category" required>
@@ -164,19 +166,22 @@
                                         <option value="sanitizer">Sanitizer</option>
                                     </select>
                                 </div>
-                                
+
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="productPrice">Price (₹) <span class="required">*</span></label>
-                                        <input type="number" id="productPrice" name="price" step="0.01" min="0" required>
+                                        <input type="number" id="productPrice" name="price" step="0.01" min="0"
+                                            required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="productQuantity">Quantity <span class="required">*</span> <small>(e.g., 1*1LT, 3*1PC)</small></label>
-                                        <input type="text" id="productQuantity" name="quantity" placeholder="e.g., 1*1LT" required>
+                                        <label for="productQuantity">Quantity <span class="required">*</span>
+                                            <small>(e.g., 1*1LT, 3*1PC)</small></label>
+                                        <input type="text" id="productQuantity" name="quantity"
+                                            placeholder="e.g., 1*1LT" required>
                                         <small class="helper-text">Format: Quantity*Unit (e.g., 1*1LT, 3*1PC)</small>
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="productStatus">Status</label>
                                     <div class="toggle-switch">
@@ -185,20 +190,22 @@
                                         <span id="statusText">Active</span>
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="productImage">Image URL</label>
-                                    <input type="url" id="productImage" name="image" placeholder="https://example.com/image.jpg">
+                                    <input type="url" id="productImage" name="image"
+                                        placeholder="https://example.com/image.jpg">
                                     <div class="image-preview">
                                         <img id="imagePreview" src="" alt="Preview" style="display: none;">
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="productDescription">Description</label>
-                                    <textarea id="productDescription" name="description" rows="4" placeholder="Enter product description..."></textarea>
+                                    <textarea id="productDescription" name="description" rows="4"
+                                        placeholder="Enter product description..."></textarea>
                                 </div>
-                                
+
                                 <div class="form-actions">
                                     <button type="button" class="btn btn-cancel">Cancel</button>
                                     <button type="submit" class="btn btn-primary">Save Product</button>
@@ -207,107 +214,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Other sections (Orders, Customers, Settings) -->
-                <section id="orders" class="admin-section">
-                    <h2>Orders</h2>
-                    <p>Orders management will be implemented here.</p>
-                </section>
-
-                <section id="customers" class="admin-section">
-                    <h2>Customers</h2>
-                    <p>Customer management will be implemented here.</p>
-                </section>
-
-                <!-- Settings Section -->
-                <section id="settings" class="admin-section">
-                    <div class="settings-header">
-                        <h2><i class="fas fa-cog"></i> Company Settings</h2>
-                        <p class="section-description">Manage your company information and preferences</p>
-                    </div>
-                    
-                    <div class="settings-container">
-                        <form id="adminSettingsForm" class="settings-form">
-                            <div class="form-section">
-                                <h3 class="form-section-title">
-                                    <i class="fas fa-building"></i> Company Information
-                                </h3>
-                                <div class="form-grid">
-                                    <div class="form-group">
-                                        <label for="companyName">Company Name <span class="required">*</span></label>
-                                        <div class="input-with-icon">
-                                            <i class="fas fa-signature"></i>
-                                            <input type="text" id="companyName" name="companyName" value="Jyothi Enterprises" required>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="companyEmail">Email Address <span class="required">*</span></label>
-                                        <div class="input-with-icon">
-                                            <i class="fas fa-envelope"></i>
-                                            <input type="email" id="companyEmail" name="companyEmail" value="jyothienterpriseslokesh@gmail.com" required>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group full-width">
-                                        <label for="companyAddress">Company Address <span class="required">*</span></label>
-                                        <div class="input-with-icon">
-                                            <i class="fas fa-map-marker-alt"></i>
-                                            <textarea id="companyAddress" name="companyAddress" rows="3" required>#27, 6th Cross, Vidyaman Nagar, Andhraili Main Road, Opp Pooja Jewellers, Bangalore - 560091</textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="form-section">
-                                <h3 class="form-section-title">
-                                    <i class="fas fa-phone-alt"></i> Contact Information
-                                </h3>
-                                <div class="form-grid">
-                                    <div class="form-group">
-                                        <label for="primaryPhone">Primary Phone <span class="required">*</span></label>
-                                        <div class="input-with-icon">
-                                            <i class="fas fa-phone"></i>
-                                            <input type="tel" id="primaryPhone" name="primaryPhone" value="+91 9740938007" required>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="secondaryPhone">Secondary Phone</label>
-                                        <div class="input-with-icon">
-                                            <i class="fas fa-phone-alt"></i>
-                                            <input type="tel" id="secondaryPhone" name="secondaryPhone" value="+91 7022096642">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="form-actions">
-                                <button type="button" class="btn btn-secondary" id="cancelSettings">
-                                    <i class="fas fa-times"></i> Cancel
-                                </button>
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fas fa-save"></i> Save Changes
-                                </button>
-                            </div>
-                        </form>
-                        
-                        <div class="settings-sidebar">
-                            <div class="settings-card">
-                                <div class="card-icon">
-                                    <i class="fas fa-info-circle"></i>
-                                </div>
-                                <h4>Settings Information</h4>
-                                <p>Update your company details to ensure accurate information is displayed across the application.</p>
-                                <ul class="settings-tips">
-                                    <li><i class="fas fa-check-circle"></i> All fields marked with <span class="required">*</span> are required</li>
-                                    <li><i class="fas fa-check-circle"></i> Keep your contact information up to date</li>
-                                    <li><i class="fas fa-check-circle"></i> Save changes to update all references</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </section>
             </main>
         </div>
     </div>
@@ -315,4 +221,5 @@
     <!-- Firebase and App Scripts -->
     <script type="module" src="js/admin.js"></script>
 </body>
+
 </html>
