@@ -15,10 +15,18 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text-color);
     line-height: 1.6;
+    display: flex;
+    flex-direction: column;
 }
 
 .container {
@@ -58,11 +66,55 @@ a {
     transform: translateY(-2px);
 }
 
+/* Make all main sections take full viewport height */
+section {
+    padding: 80px 0;
+    scroll-margin-top: 100px; /* Adjust this value based on your header height */
+    position: relative;
+}
+
+/* Ensure the first section has extra padding at the top */
+section:first-of-type {
+    padding-top: 120px; /* Adjust this value based on your header height */
+}
+
+/* Specific adjustment for the hero section */
+.hero {
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/baground2.jpg') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 120px 0 80px; /* Added bottom padding */
+}
+
+.hero .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
 /* Header Styles */
 header {
     background: #fff;
     padding: 10px 0;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 1000;
 }
 
 .header-content {
@@ -226,6 +278,12 @@ nav .container {
         display: block;
         order: 1;
         z-index: 1001;
+        color: white;
+        font-size: 24px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
     }
 
     .admin-link {
@@ -238,7 +296,7 @@ nav .container {
         position: fixed;
         top: 0;
         right: -100%;
-        width: 70%;
+        width: 250px;
         height: 100vh;
         background-color: var(--primary-color);
         flex-direction: column;
@@ -246,7 +304,8 @@ nav .container {
         box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
         z-index: 1000;
         transition: right 0.3s ease;
-        order: 3;
+        margin: 0;
+        overflow-y: auto;
     }
 
     .nav-links.active {
@@ -257,38 +316,24 @@ nav .container {
         margin: 10px 0;
         width: 100%;
     }
-}
-
-/* Hero Section */
-.hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/baground2.jpg') no-repeat center center/cover;
-    color: var(--secondary-color);
-    padding: 120px 0;
-    text-align: center;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.hero .container {
-    padding: 30px;
-    border-radius: 8px;
-}
-
-.hero h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
+    
+    .nav-links a {
+        display: block;
+        padding: 10px 0;
+        color: white;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        width: 100%;
+    }
+    
+    .nav-links a:hover {
+        color: var(--accent-color);
+    }
 }
 
 /* Products Section */
 .products {
-    padding: 60px 0;
+    min-height: auto;
+    padding: 80px 0;
     background-color: var(--light-gray);
 }
 
@@ -371,6 +416,24 @@ nav .container {
     margin: 0 0 10px;
     font-size: 1.1rem;
     color: #333;
+}
+
+.product-category {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.product-description {
+    color: #555;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limit to 3 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .product-meta {
@@ -463,13 +526,34 @@ nav .container {
 
 /* About Section */
 .about {
-    padding: 60px 0;
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.about > .container > h2 {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.about > .container > h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--accent-color);
 }
 
 .about-content {
     display: flex;
+    gap: 30px;
     align-items: flex-start;
-    gap: 40px;
 }
 
 .about-text {
@@ -508,7 +592,8 @@ nav .container {
 
 /* Customers Section */
 .customers {
-    padding: 60px 0;
+    min-height: auto;
+    padding: 80px 0;
     background-color: var(--light-gray);
 }
 
@@ -586,7 +671,8 @@ nav .container {
 
 /* Contact Section */
 .contact {
-    padding: 60px 0;
+    min-height: auto;
+    padding: 80px 0;
 }
 
 .contact-container {
@@ -640,7 +726,6 @@ nav .container {
     min-height: 120px;
 }
 
-
 /* Responsive Styles */
 @media (max-width: 768px) {
     nav ul {
@@ -668,6 +753,178 @@ nav .container {
     
     .customer-columns {
         flex-direction: column;
+    }
+    
+    section {
+        padding: 40px 0;
+    }
+    
+    .hero h2 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+}
+
+/* Why Us Section */
+.why-us {
+    background-color: #f9f9f9;
+    padding: 80px 0;
+}
+
+.why-us h2 {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.why-us h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--accent-color);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.feature-card {
+    background: white;
+    border-radius: 10px;
+    padding: 30px 25px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, var(--primary-color), #303f9f);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 28px;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+    transform: rotateY(180deg);
+}
+
+.feature-card h3 {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.feature-card h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background-color: var(--accent-color);
+}
+
+.feature-card p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-top: auto;
+}
+
+.years-badge {
+    background: linear-gradient(135deg, var(--primary-color), #303f9f);
+    color: white;
+    width: 200px;
+    padding: 25px 20px;
+    border-radius: 10px;
+    margin: 40px auto 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(26, 35, 126, 0.2);
+}
+
+.years-badge::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 10%, transparent 10.1%);
+    background-size: 20px 20px;
+    transform: rotate(45deg);
+    opacity: 0.5;
+}
+
+.years-number {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 5px;
+    color: var(--accent-color);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.years-text {
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .why-us h2 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+    
+    .feature-card {
+        padding: 25px 20px;
+    }
+    
+    .years-badge {
+        width: 180px;
+        padding: 20px 15px;
+    }
+    
+    .years-number {
+        font-size: 3rem;
     }
 }
 

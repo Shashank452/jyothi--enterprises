@@ -1,15 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jyothi Enterprises - Admin Panel</title>
-    <link rel="stylesheet" href="css/admin.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/admin.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 </head>
 <body>
-    <div class="admin-container">
+    <!-- Login Form -->
+    <div class="login-form" style="display: none;">
+        <form class="form" id="loginForm">
+            <h2>Admin Login</h2>
+            <span class="input-span">
+                <label for="email" class="label">Email</label>
+                <input type="email" id="email" required />
+            </span>
+            <span class="input-span">
+                <label for="password" class="label">Password</label>
+                <input type="password" id="password" required />
+            </span>
+            <p id="errorMsg" class="error-message"></p>
+            <div class="form-buttons">
+                <input class="submit" type="submit" value="Log in" id="loginBtn" />
+                <a href="index.html" class="back-home-btn">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Admin Panel -->
+    <div class="admin-container" style="display: none;">
         <header class="admin-header">
+            <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <h1>Jyothi Enterprises <span>Admin Panel</span></h1>
             <button id="logoutBtn">Logout</button>
         </header>
@@ -18,11 +46,11 @@
             <aside class="admin-sidebar">
                 <nav>
                     <ul>
-                        <li class="active"><a href="#" data-section="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                        <li><a href="#" data-section="products"><i class="fas fa-box-open"></i> Products</a></li>
-                        <li><a href="#" data-section="orders"><i class="fas fa-shopping-cart"></i> Orders</a></li>
-                        <li><a href="#" data-section="customers"><i class="fas fa-users"></i> Customers</a></li>
-                        <li><a href="#" data-section="settings"><i class="fas fa-cog"></i> Settings</a></li>
+                        <li><a href="#dashboard" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        <li><a href="#products"><i class="fas fa-box"></i> Products</a></li>
+                        <li><a href="#orders"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+                        <li><a href="#customers"><i class="fas fa-users"></i> Customers</a></li>
+                        <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
                     </ul>
                 </nav>
             </aside>
@@ -41,19 +69,29 @@
                             <p id="activeProducts">0</p>
                         </div>
                         <div class="stat-card">
-                            <h3>Pending Orders</h3>
-                            <p id="pendingOrders">0</p>
+                            <h3>Inactive Products</h3>
+                            <p id="inactiveProducts">0</p>
                         </div>
                         <div class="stat-card">
-                            <h3>Total Customers</h3>
-                            <p id="totalCustomers">0</p>
+                            <h3>Total Inventory Value</h3>
+                            <p id="totalInventoryValue">₹0.00</p>
                         </div>
                     </div>
+
                     <div class="recent-activity">
-                        <h3>Recent Activity</h3>
-                        <ul id="activityList">
-                            <!-- Activity items will be added here -->
-                        </ul>
+                        <h3>Recent Products</h3>
+                        <table id="recentProducts">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
                     </div>
                 </section>
 
@@ -61,9 +99,10 @@
                 <section id="products" class="admin-section">
                     <div class="section-header">
                         <h2>Product Management</h2>
-                        <button id="addProductBtn" class="btn-primary">Add New Product</button>
+                        <button onclick="window.openAddProductPopup()" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Add Product
+                        </button>
                     </div>
-                    
                     <div class="product-filters">
                         <select id="productCategoryFilter">
                             <option value="all">All Categories</option>
@@ -76,28 +115,26 @@
                             <option value="active">Active</option>
                             <option value="inactive">Inactive</option>
                         </select>
-                        <input type="text" id="productSearch" placeholder="Search products...">
+                        <input type="text" id="productSearch" placeholder="Search products..." />
                     </div>
-                    
-                    <div class="table-container">
-                        <table id="productsTable">
+                    <div class="table-responsive">
+                        <table class="products-table">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Image</th>
-                                    <th>Name</th>
+                                    <th>#</th>
+                                    <th>Product</th>
                                     <th>Category</th>
-                                    <th>Price (₹)</th>
+                                    <th>Price</th>
+                                    <th>Qty</th>
                                     <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <!-- Product rows will be added here -->
+                            <tbody id="productsTableBody">
+                                <!-- Products will be inserted here by JavaScript -->
                             </tbody>
                         </table>
                     </div>
-                    
                     <div class="pagination">
                         <button id="prevPage" disabled>Previous</button>
                         <span id="pageInfo">Page 1 of 1</span>
@@ -105,102 +142,177 @@
                     </div>
                 </section>
 
-                <!-- Orders Section -->
+                <!-- Add/Edit Product Popup -->
+                <div id="productPopup" class="popup-overlay">
+                    <div class="popup">
+                        <div class="popup-header">
+                            <h3 id="popupTitle">Add Product</h3>
+                            <button class="close-popup">&times;</button>
+                        </div>
+                        <div class="popup-body">
+                            <form id="productForm" class="popup-form">
+                                <div class="form-group">
+                                    <label for="productName">Product Name <span class="required">*</span></label>
+                                    <input type="text" id="productName" name="name" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="productCategory">Category <span class="required">*</span></label>
+                                    <select id="productCategory" name="category" required>
+                                        <option value="chemical">Chemical</option>
+                                        <option value="cleaning">Cleaning</option>
+                                        <option value="sanitizer">Sanitizer</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="productPrice">Price (₹) <span class="required">*</span></label>
+                                        <input type="number" id="productPrice" name="price" step="0.01" min="0" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="productQuantity">Quantity <span class="required">*</span> <small>(e.g., 1*1LT, 3*1PC)</small></label>
+                                        <input type="text" id="productQuantity" name="quantity" placeholder="e.g., 1*1LT" required>
+                                        <small class="helper-text">Format: Quantity*Unit (e.g., 1*1LT, 3*1PC)</small>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="productStatus">Status</label>
+                                    <div class="toggle-switch">
+                                        <input type="checkbox" id="statusToggle" name="status" checked>
+                                        <label for="statusToggle"></label>
+                                        <span id="statusText">Active</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="productImage">Image URL</label>
+                                    <input type="url" id="productImage" name="image" placeholder="https://example.com/image.jpg">
+                                    <div class="image-preview">
+                                        <img id="imagePreview" src="" alt="Preview" style="display: none;">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="productDescription">Description</label>
+                                    <textarea id="productDescription" name="description" rows="4" placeholder="Enter product description..."></textarea>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-cancel">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Save Product</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other sections (Orders, Customers, Settings) -->
                 <section id="orders" class="admin-section">
-                    <h2>Order Management</h2>
-                    <p>Order management functionality will be implemented in future updates.</p>
+                    <h2>Orders</h2>
+                    <p>Orders management will be implemented here.</p>
                 </section>
 
-                <!-- Customers Section -->
                 <section id="customers" class="admin-section">
-                    <h2>Customer Management</h2>
-                    <p>Customer management functionality will be implemented in future updates.</p>
+                    <h2>Customers</h2>
+                    <p>Customer management will be implemented here.</p>
                 </section>
 
                 <!-- Settings Section -->
                 <section id="settings" class="admin-section">
-                    <h2>Settings</h2>
-                    <form id="adminSettingsForm">
-                        <div class="form-group">
-                            <label for="companyName">Company Name</label>
-                            <input type="text" id="companyName" name="companyName" value="Jyothi Enterprises">
+                    <div class="settings-header">
+                        <h2><i class="fas fa-cog"></i> Company Settings</h2>
+                        <p class="section-description">Manage your company information and preferences</p>
+                    </div>
+                    
+                    <div class="settings-container">
+                        <form id="adminSettingsForm" class="settings-form">
+                            <div class="form-section">
+                                <h3 class="form-section-title">
+                                    <i class="fas fa-building"></i> Company Information
+                                </h3>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="companyName">Company Name <span class="required">*</span></label>
+                                        <div class="input-with-icon">
+                                            <i class="fas fa-signature"></i>
+                                            <input type="text" id="companyName" name="companyName" value="Jyothi Enterprises" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="companyEmail">Email Address <span class="required">*</span></label>
+                                        <div class="input-with-icon">
+                                            <i class="fas fa-envelope"></i>
+                                            <input type="email" id="companyEmail" name="companyEmail" value="jyothienterpriseslokesh@gmail.com" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group full-width">
+                                        <label for="companyAddress">Company Address <span class="required">*</span></label>
+                                        <div class="input-with-icon">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <textarea id="companyAddress" name="companyAddress" rows="3" required>#27, 6th Cross, Vidyaman Nagar, Andhraili Main Road, Opp Pooja Jewellers, Bangalore - 560091</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-section">
+                                <h3 class="form-section-title">
+                                    <i class="fas fa-phone-alt"></i> Contact Information
+                                </h3>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="primaryPhone">Primary Phone <span class="required">*</span></label>
+                                        <div class="input-with-icon">
+                                            <i class="fas fa-phone"></i>
+                                            <input type="tel" id="primaryPhone" name="primaryPhone" value="+91 9740938007" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="secondaryPhone">Secondary Phone</label>
+                                        <div class="input-with-icon">
+                                            <i class="fas fa-phone-alt"></i>
+                                            <input type="tel" id="secondaryPhone" name="secondaryPhone" value="+91 7022096642">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary" id="cancelSettings">
+                                    <i class="fas fa-times"></i> Cancel
+                                </button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Save Changes
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <div class="settings-sidebar">
+                            <div class="settings-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-info-circle"></i>
+                                </div>
+                                <h4>Settings Information</h4>
+                                <p>Update your company details to ensure accurate information is displayed across the application.</p>
+                                <ul class="settings-tips">
+                                    <li><i class="fas fa-check-circle"></i> All fields marked with <span class="required">*</span> are required</li>
+                                    <li><i class="fas fa-check-circle"></i> Keep your contact information up to date</li>
+                                    <li><i class="fas fa-check-circle"></i> Save changes to update all references</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="companyAddress">Company Address</label>
-                            <textarea id="companyAddress" name="companyAddress">#27, 6th Cross, Vidyaman Nagar, Andhraili Main Road, Opp Pooja Jewellers, Bangalore - 560091</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="primaryPhone">Primary Phone</label>
-                            <input type="text" id="primaryPhone" name="primaryPhone" value="+91 9740938007">
-                        </div>
-                        <div class="form-group">
-                            <label for="secondaryPhone">Secondary Phone</label>
-                            <input type="text" id="secondaryPhone" name="secondaryPhone" value="+91 7022096642">
-                        </div>
-                        <div class="form-group">
-                            <label for="companyEmail">Company Email</label>
-                            <input type="email" id="companyEmail" name="companyEmail" value="Krishan16feb.gowda@gmail.com">
-                        </div>
-                        <button type="submit" class="btn-primary">Save Settings</button>
-                    </form>
+                    </div>
                 </section>
             </main>
         </div>
     </div>
 
-    <!-- Add/Edit Product Modal -->
-    <div id="productModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2 id="modalTitle">Add New Product</h2>
-            <form id="productForm">
-                <input type="hidden" id="productId">
-                <div class="form-group">
-                    <label for="productName">Product Name</label>
-                    <input type="text" id="productName" name="productName" required>
-                </div>
-                <div class="form-group">
-                    <label for="productCategory">Category</label>
-                    <select id="productCategory" name="productCategory" required>
-                        <option value="chemical">Chemical Items</option>
-                        <option value="hygienic">Hygienic Materials</option>
-                        <option value="branded">Branded Products</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="productPrice">Price (₹)</label>
-                    <input type="number" id="productPrice" name="productPrice" min="0" step="0.01" required>
-                </div>
-                <div class="form-group">
-                    <label for="productQuantity">Quantity/Unit</label>
-                    <input type="text" id="productQuantity" name="productQuantity" placeholder="e.g., 1L, 1Pc, 5L Can">
-                </div>
-                <div class="form-group">
-                    <label for="productImage">Product Image</label>
-                    <input type="file" id="productImage" name="productImage" accept="image/*">
-                    <div id="imagePreviewContainer" style="display: none;">
-                        <img id="imagePreview" src="#" alt="Preview" style="max-width: 200px; max-height: 200px;">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="productStatus">Status</label>
-                    <select id="productStatus" name="productStatus">
-                        <option value="active">Active (Visible to customers)</option>
-                        <option value="inactive">Inactive (Hidden from customers)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="productDescription">Description (Optional)</label>
-                    <textarea id="productDescription" name="productDescription"></textarea>
-                </div>
-                <div class="form-actions">
-                    <button type="submit" class="btn-primary">Save Product</button>
-                    <button type="button" class="btn-secondary close-modal">Cancel</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <script src="js/admin.js"></script>
+    <!-- Firebase and App Scripts -->
+    <script type="module" src="js/admin.js"></script>
 </body>
 </html>
